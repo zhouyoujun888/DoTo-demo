@@ -2,15 +2,29 @@
     <div class="todo_header_container">
         <h1 class="todo_title">宥宥记事本</h1>
         <div class="ipt_container">
-            <input class="ipt_todo" type="text" placeholder="输入待办事项">
-            <button class="ipt_btn">添加任务</button>
+            <input v-model="todoName" @keyup.enter="handelAdd" class="ipt_todo" type="text" placeholder="输入待办事项">
+            <button @click="handelAdd" class="ipt_btn">添加任务</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-
+    data() {
+        return {
+            todoName: ''
+        }
+    },
+    methods: {
+        handelAdd() {
+            if (!this.todoName) {
+                return alert('输入不能为空')
+            }
+            this.$emit('addTodoName', this.todoName)
+            // 每次调用就清空输入框的值
+            this.todoName = ''
+        }
+    }
 }
 </script>
 

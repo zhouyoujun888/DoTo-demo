@@ -1,9 +1,9 @@
 <template>
     <div class="todo_main_container">
         <ul>
-            <li>
-                <span>跑步一公里</span>
-                <span>X</span>
+            <li v-for="(item, index) in list" :key="item.id">
+                <span>{{ (index + 1) + '.' + item.content }}</span>
+                <span @click="handelDel(item.id)">X</span>
             </li>
         </ul>
     </div>
@@ -11,7 +11,14 @@
 
 <script>
 export default {
-
+    props: {
+        list: Array
+    },
+    methods: {
+        handelDel(id) {
+            this.$emit('delTodoName', id)
+        }
+    }
 }
 </script>
 

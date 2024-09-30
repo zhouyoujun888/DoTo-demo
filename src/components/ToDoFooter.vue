@@ -1,15 +1,22 @@
 <template>
     <div class="todo_footer_container">
         <div class="footer_container">
-            <span>合计：2</span>
-            <span>清空任务</span>
+            <span>合计：{{ list.length }}</span>
+            <span @click="delTodo">清空任务</span>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-
+    props: {
+        list: Array
+    },
+    methods: {
+        delTodo() {
+            this.$emit('clear')
+        }
+    }
 }
 </script>
 
